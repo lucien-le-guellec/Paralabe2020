@@ -10,6 +10,7 @@
 
 # À faire
 
+* Mise à jour diaporama
 * Fonctions
     * affichage.py (matplotlib)
 * IHM
