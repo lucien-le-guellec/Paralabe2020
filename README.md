@@ -4,7 +4,7 @@
     * extracteur_pixels.py (y compris avec un redimentionnement)
     * ouvrir_json.py
 * Fonctions
-    * suppression de cluster (autres.py)
+    * suppression de descripteurs (autres.py)
     * umap_reduction.py
     * hdbscan_clustering.py
 
