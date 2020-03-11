@@ -2,7 +2,7 @@ import hdbscan
 import numpy as np
 from datetime import datetime
 
-from extraction.extractor_pixels import charger_data
+from extraction.extracteur_pixels import charger_data
 from fonctions.autres import exporter_json
 from fonctions.umap_reduction import reduire_dimensions
 

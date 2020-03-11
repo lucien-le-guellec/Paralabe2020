@@ -1,7 +1,7 @@
 import json
 import os
 
-from extraction.open_json import charger_data
+from extraction.ouvrir_json import charger_data
 
 
 def supprimer_descripteurs(chemin, nom_fichier, nom_descripteur, data):

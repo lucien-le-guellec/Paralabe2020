@@ -3,7 +3,7 @@ import os
 import umap
 import numpy as np
 
-from extraction.extractor_pixels import charger_data
+from extraction.extracteur_pixels import charger_data
 from fonctions.autres import exporter_json
 
 def reduire_dimensions(data, nom_entree, nom_sortie, n_neighbors, min_dist, n_components, chemin):
