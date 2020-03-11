@@ -59,7 +59,7 @@ def charger_data(args):
             data.append(data_dict)
         # print_progress_bar(i + 1, num_files, prefix='Progress:', suffix='Complete', length=50)
 
-    exporter_json(chemin, data)
+    exporter_json(chemin, "data.json", data)
 
     # Summary printing
     print(f"Process as successfully ended !\n{num_files} "
