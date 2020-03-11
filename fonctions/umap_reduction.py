@@ -6,7 +6,7 @@ import numpy as np
 from extraction.extractor_pixels import charger_data
 from fonctions.autres import exporter_json
 
-def reduire_dimensions(data, nom_entree, nom_sortie, n_neighbors, min_dist, n_components, path):
+def reduire_dimensions(data, nom_entree, nom_sortie, n_neighbors, min_dist, n_components, chemin):
     vecteurs = []
     for i in data:
         vecteurs.append(i["descripteurs"][nom_entree])
@@ -14,7 +14,7 @@ def reduire_dimensions(data, nom_entree, nom_sortie, n_neighbors, min_dist, n_co
     vecteurs_reduits = reducteur.fit_transform(vecteurs)
     for i in range(len(data)):
         data[i]["descripteurs"].update({nom_sortie : list(np.float64(vecteurs_reduits[i]))})
-    dossier, fichier = os.path.split(path)
+    dossier, fichier = os.path.split(chemin)
     exporter_json(dossier, fichier, data)
     return data
 
