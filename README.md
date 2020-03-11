@@ -5,8 +5,8 @@
     * ouvrir_json.py
 * Fonctions
     * suppression de cluster (autres.py)
-    * umap_clustering.py
-    * hdbscan_reduction.py
+    * umap_reduction.py
+    * hdbscan_clustering.py
 
 # À faire
 
