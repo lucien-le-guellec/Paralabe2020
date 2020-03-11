@@ -1,13 +1,9 @@
 import glob
-import json
 import os
 import base64
 from PIL import Image
+from fonctions.autres import exporter_json
 
-def exporter_json(chemin, data):
-    with open(os.path.join(chemin, "data.json"), "w+") as fichier:
-        json_data = json.dumps(data)
-        fichier.write(json_data)
 
 def encoder_base64(fichier: str) -> str:
     """
@@ -23,8 +19,8 @@ def encoder_base64(fichier: str) -> str:
     return f'data:image/{ext.replace(".", "")};base64,{chaine_base64}'
 
 def charger_data(args):
-    path = args[0]
-    size = args[1]
+    chemin = args[0]
+    taille = args[1]
     # Variables declaration
     files = []
     data = []
@@ -33,23 +29,23 @@ def charger_data(args):
     #with open(os.path.join(path, "data.json"), "w+") as outfile:
 
 
-    num_files_bmp = len(list(glob.glob(os.path.join(path, '*.bmp'))))
-    num_files_png = len(list(glob.glob(os.path.join(path, '*.png'))))
-    num_files_jpg = len(list(glob.glob(os.path.join(path, '*.jpg'))))
+    nombre_fichiers_bmp = len(list(glob.glob(os.path.join(chemin, '*.bmp'))))
+    nombre_fichiers_png = len(list(glob.glob(os.path.join(chemin, '*.png'))))
+    nombre_fichiers_jpg = len(list(glob.glob(os.path.join(chemin, '*.jpg'))))
 
-    num_files = num_files_bmp + num_files_png + num_files_jpg
+    num_files = nombre_fichiers_bmp + nombre_fichiers_png + nombre_fichiers_jpg
 
     # Random printings
-    print("Working directory :", path)
-    print("Number of BMP files :", num_files_bmp)
-    print("Number of PNG files :", num_files_png)
-    print("Number of JPG files :", num_files_jpg)
+    print("Working directory :", chemin)
+    print("Number of BMP files :", nombre_fichiers_bmp)
+    print("Number of PNG files :", nombre_fichiers_png)
+    print("Number of JPG files :", nombre_fichiers_jpg)
 
     # print_progress_bar(0, num_files, prefix='Progress:', suffix='Complete', length=50)
 
     # Get all the files with the given extensions in the directory set in argv
     for ext in ['*.bmp', '*.png', '*.jpg']:
-        files.extend(glob.glob(os.path.join(path, ext)))
+        files.extend(glob.glob(os.path.join(chemin, ext)))
 
     # Gets the greyscale of the images
     # Put data into a json file
@@ -59,15 +55,15 @@ def charger_data(args):
             im = Image.open(infile)
             data_dict = {"nom": os.path.split(infile)[1],
                          "image": encoder_base64(infile),
-                         "descripteurs": {"pixels": list(im.convert("L").resize((size, size)).getdata())}}
+                         "descripteurs": {"pixels": list(im.convert("L").resize((taille, taille)).getdata())}}
             data.append(data_dict)
         # print_progress_bar(i + 1, num_files, prefix='Progress:', suffix='Complete', length=50)
 
-    exporter_json(path, data)
+    exporter_json(chemin, data)
 
     # Summary printing
     print(f"Process as successfully ended !\n{num_files} "
-          f"files have been exported into {os.path.join(path, 'data.json')}.\n")
+          f"files have been exported into {os.path.join(chemin, 'data.json')}.\n")
 
     return data
 
