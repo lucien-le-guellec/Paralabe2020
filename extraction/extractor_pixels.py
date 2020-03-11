@@ -21,6 +21,7 @@ def encoder_base64(fichier: str) -> str:
 def charger_data(args):
     chemin = args[0]
     taille = args[1]
+    nom_fichier = args[2]
     # Variables declaration
     files = []
     data = []
@@ -59,7 +60,7 @@ def charger_data(args):
             data.append(data_dict)
         # print_progress_bar(i + 1, num_files, prefix='Progress:', suffix='Complete', length=50)
 
-    exporter_json(chemin, "data.json", data)
+    exporter_json(chemin, nom_fichier, data)
 
     # Summary printing
     print(f"Process as successfully ended !\n{num_files} "
@@ -68,4 +69,4 @@ def charger_data(args):
     return data
 
 if __name__ == '__main__':
-    charger_data(["../data/imagettes_paradiit/", 20])
+    charger_data(["../data/imagettes_paradiit/", 20, "data.json"])
