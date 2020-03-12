@@ -1,5 +1,4 @@
 import hdbscan
-import numpy as np
 from datetime import datetime
 
 from extraction.extracteur_pixels import charger_data
@@ -14,6 +13,7 @@ def clusteriser(data, nom_entree, nom_sortie, min_samples, path, nom_fichier):
     clustering = {"description": "Clustering fait le "+date.strftime("%d/%m/%Y, %H:%M:%S")
                                 + ", depuis les descripteurs "+nom_entree+" ("+str(nombre_dimensions)
                                 + " dimensions) du fichier "+nom_fichier,
+                  "fichier": nom_fichier,
                   "clusters": {},
                   "tags": {}}
     for i in data:
