@@ -17,6 +17,3 @@ def reduire_dimensions(data, nom_entree, nom_sortie, n_neighbors, min_dist, n_co
     dossier, fichier = os.path.split(chemin)
     exporter_json(dossier, fichier, data)
     return data
-
-if __name__ == '__main__':
-    reduire_dimensions(charger_data(["../data/imagettes_paradiit/", 20, "data.json"]), "pixels", "2d", 100, 0.1, 2, "../data/imagettes_paradiit/data.json")

@@ -7,10 +7,9 @@ from fonctions.hdbscan_clustering import clusteriser
 from fonctions.umap_reduction import reduire_dimensions
 
 
-def afficher(chemin, nom, clustering):
-    data = charger_data([chemin+clustering["fichier"]])
+def afficher(chemin, nom, data, clustering):
     n_clusters = len(clustering["clusters"])-1
-    if clustering["dimensions"]>2:
+    if clustering["dimensions"]!=2:
         return "Affichage impossible avec plus de deux dimensions"
     else:
         x = []
@@ -32,7 +31,3 @@ def afficher(chemin, nom, clustering):
         plt.title(clustering["description"])
         plt.savefig(chemin+nom+".png")
         plt.show()
-
-if __name__ == '__main__':
-    data = reduire_dimensions(cd1(["../data/imagettes_paradiit/", 20, "data.json"]), "pixels", "2d", 100, 0.1, 2, "../data/imagettes_paradiit/data.json")
-    afficher("../data/imagettes_paradiit/", "clusters1", clusteriser(data, "2d", "clusters1", 10, "../data/imagettes_paradiit/", "data.json"))

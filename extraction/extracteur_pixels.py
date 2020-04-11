@@ -16,7 +16,7 @@ def charger_data(args):
     chemin = args[0]
     taille = args[1]
     nom_fichier = args[2]
-    files = []
+    fichiers = []
     data = []
 
 
@@ -33,11 +33,11 @@ def charger_data(args):
 
     # print_progress_bar(0, num_files, prefix='Progress:', suffix='Complete', length=50)
     for ext in ['*.bmp', '*.png', '*.jpg']:
-        files.extend(glob.glob(os.path.join(chemin, ext)))
+        fichiers.extend(glob.glob(os.path.join(chemin, ext)))
 
     # Gets the greyscale of the images
     # Put data into a json file
-    for i, infile in enumerate(files):
+    for i, infile in enumerate(fichiers):
         file, ext = os.path.splitext(infile)
         if ext == '.bmp' or ext == '.png' or ext == '.jpg':
             im = Image.open(infile)
@@ -53,6 +53,3 @@ def charger_data(args):
     #       f"files have been exported into {os.path.join(chemin, 'data.json')}.\n")
 
     return data
-
-if __name__ == '__main__':
-    charger_data(["../data/imagettes_paradiit/", 20, "data.json"])

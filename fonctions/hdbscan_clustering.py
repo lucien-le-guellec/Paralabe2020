@@ -31,7 +31,3 @@ def clusteriser(data, nom_entree, nom_sortie, min_samples, path, nom_fichier):
         clustering["clusters"][str(cluster)].append(data[i]["nom"])
     exporter_json(path, nom_sortie+".json", clustering)
     return clustering
-
-if __name__ == '__main__':
-    data = reduire_dimensions(charger_data(["../data/imagettes_paradiit/", 20, "data.json"]), "pixels", "2d", 100, 0.1, 2, "../data/imagettes_paradiit/data.json")
-    clusteriser(data, "2d", "clusters1", 10, "../data/imagettes_paradiit/", "data.json")
