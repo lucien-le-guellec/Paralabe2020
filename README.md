@@ -1,23 +1,25 @@
-# Fait
+# Installation
 
-* Extraction
-    * extracteur_pixels.py (y compris avec un redimentionnement)
-    * ouvrir_json.py
-* Fonctions
-    * suppression de descripteurs (autres.py)
-    * umap_reduction.py
-    * hdbscan_clustering.py
+* Télécharger le dossier
+* Installer toutes les dépendances, avec pip ou conda
+    * matplotlib
+    * numpy
+    * umap-learn
+    * hdbscan
 
-# À faire
+# Exécution
 
-* Mise à jour diaporama
-* Fonctions
-    * affichage.py (matplotlib)
-* IHM
-    * accueil.py
-    * reduction.py
-    * clustering.py
-* Gestion de l'ajout de nouveaux extracteurs
-* Commentaires et nettoyage
-* Tests plus complets
-* Rédaction du rapport
+* Avec une IDE comme PyCharm : lancer exécuter le fichier Paralabe2020/IHM/accueil.py 
+* Depuis la console, se placer dans le dossier IHM et exécuter le fichier accueil.py (cela ne marchera pas s'il est atteint depuis un autre dossier)
+
+# Utilisation
+
+* La fenêtre d'accueil permet de choisir les données d'entrée
+* La fenêtre UMAP
+    * Nombre de dimensions
+    * n_neighbors
+    * min_dist
+* La fenêtre HDBSCAN 
+    * min_samples
+
+# Ajout de scripts d'extraction

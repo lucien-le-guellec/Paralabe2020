@@ -90,10 +90,8 @@ class AccueilIHM:
         self.fenetre = Tk()
         self.fenetre.title('Paralabe 2020 - Charger des données')
         self.texte = StringVar()
-        self.couleur_texte='black'
+        self.couleur_texte = 'black'
         self.liste_scripts = []
-
-
 
 
         try:

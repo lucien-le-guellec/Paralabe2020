@@ -17,7 +17,7 @@ class ClusteringIHM:
                 self.texte_label.config(fg='black')
                 dossier, fichier = os.path.split(self.nom_fichier)
                 clustering = clusteriser(self.data, self.liste_entrees.get().split(' (')[0], self.champ_nom.get(), int(self.selecteur_min_samples.get()), dossier, fichier)
-                afficher(dossier, fichier, self.data, clustering)
+                afficher(dossier+'/', self.champ_nom.get(), self.data, clustering)
                 nombre_clusters = str(len(clustering['clusters']))
                 self.texte.set('Clustering enregistré dans le fichier '+self.champ_nom.get()+'.json ('+nombre_clusters+' clusters)')
             except KeyError:
