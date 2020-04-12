@@ -8,8 +8,13 @@ from fonctions.umap_reduction import reduire_dimensions
 
 
 class ReductionIHM:
-    
+    """
+    Deuxième IHM pour la réduction
+    """
     def lancer_reduction(self):
+        """
+        Lance la réduction quand on appuie sur le bouton Lancer la réduction
+        """
         if len(self.champ_nom.get())<1:
             self.texte.set('Veuillez entrer un nom.')
             self.texte_label.config(fg='red')
@@ -25,6 +30,9 @@ class ReductionIHM:
                 self.texte_label.config(fg='red')
 
     def supprimer(self):
+        """
+        Supprime des descripteurs du tableau et du fichier quand on appuie sur le bouton Supprimer ces descripteurs
+        """
         try:
             self.texte.set('Opération en cours…')
             self.texte_label.config(fg='black')
@@ -37,16 +45,26 @@ class ReductionIHM:
             self.texte_label.config(fg='red')
 
     def passer(self):
+        """
+        Permet de passer au clustering sans réduction quand on appuie sur le bouton Passer directement au clustering
+        """
         self.fenetre.destroy()
         ClusteringIHM(self.data, self.nom_fichier)
 
     def retour(self):
+        """
+        Renvoie à l'IHM d'accueil quand on appuie sur le bouton Retour
+        """
         self.fenetre.destroy()
         from IHM.accueil import AccueilIHM
         AccueilIHM()
     
     def __init__(self, d, c):
-
+        """
+        Constructeur qui crée la fenêtre
+        :param d: le tableau contenant les données
+        :param c: le chemin du fichier contenant les données
+        """
         self.data = d
         self.nom_fichier = c
         self.fenetre = Tk()

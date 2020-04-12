@@ -1,13 +1,15 @@
 import matplotlib.pyplot as plt
 import colorsys
 
-from extraction.extracteur_pixels import charger_data as cd1
-from extraction.ouvrir_json import charger_data
-from fonctions.hdbscan_clustering import clusteriser
-from fonctions.umap_reduction import reduire_dimensions
-
-
 def afficher(chemin, nom, data, clustering):
+    """
+    Affiche et enregistre la représentation graphique des points et des clusters
+    :param chemin: le dossier qui contient les données
+    :param nom: le nom du clustering, qui sera aussi celui de l'image
+    :param data: le tableau des données
+    :param clustering: le tableau du clustering
+    :return: l'erreur éventuelle
+    """
     n_clusters = len(clustering["clusters"])-1
     if clustering["dimensions"]!=2:
         return "Affichage impossible avec plus de deux dimensions"

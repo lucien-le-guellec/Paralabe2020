@@ -10,7 +10,13 @@ from IHM.reduction import ReductionIHM
 from extraction import ouvrir_json
 
 class AccueilIHM:
+    """
+    IHM d'accueil
+    """
     def selectionner_fichier(self):
+        """
+        Sélecteur de fichier via l'explorateur de l'OS, activé par le bouton Parcourir
+        """
         if self.liste.curselection()[0] < 2:
             chemin = askopenfilename(filetypes=[('Fichier JSON', '*.json')])
             self.champ_fichier.config(state='normal')
@@ -33,9 +39,15 @@ class AccueilIHM:
                 self.champ_fichier.config(state='readonly')
 
     def peut_parcourir(self, message):
+        """
+        Rend le bouton Parcourir accessible quand un choix a été sélectionné
+        """
         self.bouton_parcourir.config(state='normal')
 
     def action(self):
+        """
+        Action effectuée selon le choix sélectionné lors de l'appui sur le bouton OK
+        """
         self.texte.set("Ouverture…")
         self.texte_label.config(fg='black')
         choix = -1
@@ -87,6 +99,9 @@ class AccueilIHM:
                 self.texte_label.config(fg='red')
 
     def __init__(self):
+        """
+        Constructeur qui crée la fenêtre
+        """
         self.fenetre = Tk()
         self.fenetre.title('Paralabe 2020 - Charger des données')
         self.texte = StringVar()

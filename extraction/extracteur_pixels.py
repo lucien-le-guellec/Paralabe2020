@@ -6,6 +6,11 @@ from fonctions.autres import exporter_json
 
 
 def encoder_base64(fichier: str) -> str:
+    """
+    Permet d'obtenir la chaîne de caractère correspondant à l'image encorée en base64
+    :param fichier: le chemin de l'image
+    :return: la chaîne de caractère
+    """
     with open(fichier, "rb") as fichier_image:
         fichier, ext = os.path.splitext(fichier)
         chaine_base64 = base64.b64encode(fichier_image.read()).decode()
@@ -13,6 +18,11 @@ def encoder_base64(fichier: str) -> str:
     return f'data:image/{ext.replace(".", "")};base64,{chaine_base64}'
 
 def charger_data(args):
+    """
+    Produit le tableau des données à partir d'un dossier d'images
+    :param args: tableau d'arguments contenant le chemin du dossier, la taille de redimentionnement des images, et le nom du fichier à produire
+    :return: le tableau des données
+    """
     chemin = args[0]
     taille = args[1]
     nom_fichier = args[2]
@@ -26,17 +36,9 @@ def charger_data(args):
 
     num_files = nombre_fichiers_bmp + nombre_fichiers_png + nombre_fichiers_jpg
 
-    # print("Working directory :", chemin)
-    # print("Number of BMP files :", nombre_fichiers_bmp)
-    # print("Number of PNG files :", nombre_fichiers_png)
-    # print("Number of JPG files :", nombre_fichiers_jpg)
-
-    # print_progress_bar(0, num_files, prefix='Progress:', suffix='Complete', length=50)
     for ext in ['*.bmp', '*.png', '*.jpg']:
         fichiers.extend(glob.glob(os.path.join(chemin, ext)))
 
-    # Gets the greyscale of the images
-    # Put data into a json file
     for i, infile in enumerate(fichiers):
         file, ext = os.path.splitext(infile)
         if ext == '.bmp' or ext == '.png' or ext == '.jpg':
@@ -45,11 +47,7 @@ def charger_data(args):
                          "image": encoder_base64(infile),
                          "descripteurs": {"pixels": list(im.convert("L").resize((taille, taille)).getdata())}}
             data.append(data_dict)
-        # print_progress_bar(i + 1, num_files, prefix='Progress:', suffix='Complete', length=50)
 
     exporter_json(chemin, nom_fichier, data)
-
-    # print(f"Process as successfully ended !\n{num_files} "
-    #       f"files have been exported into {os.path.join(chemin, 'data.json')}.\n")
 
     return data

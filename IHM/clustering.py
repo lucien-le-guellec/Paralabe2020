@@ -7,7 +7,13 @@ from fonctions.hdbscan_clustering import clusteriser
 
 
 class ClusteringIHM:
+    """
+    Dernière IHM, pour le clustering
+    """
     def lancer_clustering(self):
+        """
+        Lance le clustering quand on appuie sur le bouton Lancer le clustering
+        """
         if len(self.champ_nom.get())<1:
             self.texte.set('Veuillez entrer un nom.')
             self.texte_label.config(fg='red')
@@ -25,11 +31,19 @@ class ClusteringIHM:
                 self.texte_label.config(fg='red')
 
     def retour(self):
+        """
+        Permet de retourner à l'IHM de réduction lors d'un appui sur le bouton Retour
+        """
         self.fenetre.destroy()
         from IHM.reduction import ReductionIHM
         ReductionIHM(self.data, self.nom_fichier)
 
     def __init__(self, d, c):
+        """
+        Constructeur qui crée la fenêtre
+        :param d: le tableau contenant les données
+        :param c: le chemin du fichier contenant les données
+        """
         self.data = d
         self.nom_fichier = c
         self.fenetre = Tk()
